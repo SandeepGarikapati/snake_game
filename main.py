@@ -31,13 +31,20 @@ while is_gameon:
         snake.extend()
         score.increase_score()
 
-    if snake.head.xcor() > 290 or snake.head.xcor() < -290 or snake.head.ycor() > 290 or snake.head.ycor() < -290:
-        is_gameon = False
-        score.is_game_over()
 
+    #Detect the snake collision with the wall
+    if snake.head.xcor() > 290 or snake.head.xcor() < -290 or snake.head.ycor() > 290 or snake.head.ycor() < -290:
+        score.reset()
+        snake.reset()
+
+
+
+
+
+    #Detect the snake collision with the body
     for segment in snake.segments[1:]:
         if snake.head.distance(segment) < 10:
-            is_gameon = False
-            score.is_game_over()
+            score.reset()
+            snake.reset()
 
 screen.exitonclick()
